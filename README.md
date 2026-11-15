@@ -359,92 +359,50 @@ All actions and endpoints have been executed against the live Render deployment 
 
 ---
 
-### Part B: Postman API Execution Proofs
+### Part B: Postman Mutations & Twist Rule State Machine
 
-The complete Postman test suite was executed against the API with each test assertion verified:
-
-#### 1. API Root Discovery (`GET /`)
-![01 - Postman Root](screenshots/01-home-api.png)
-- **Endpoint:** `GET /`
-- **Status Code:** `200 OK`
-- **Description:** Verifies base server reachability and API route map output.
-
----
-
-#### 2. Create Room with Validation (`POST /rooms`)
-![02 - Postman Create Room](screenshots/02-create-room.png)
-- **Endpoint:** `POST /rooms`
+#### 12. Create New Room (`POST /rooms`)
+![12 - Postman Create Room](screenshots/12-postman-create-room.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
 - **Payload:** `{"name": "Room 501", "block": "Block E"}`
 - **Status Code:** `201 Created`
-- **Description:** Inserts a new room record with required fields and verifies successful creation response.
+- **Description:** Successfully inserts a new room with validation and returns the created record.
 
 ---
 
-#### 3. Twist Test 1: Add Allotment Starting as Pending (`POST /allotments`)
-![03 - Postman Create Allotment](screenshots/03-create-allotment.png)
-- **Endpoint:** `POST /allotments`
+#### 13. Twist Test 1: Add Allotment Starting as Pending (`POST /allotments`)
+![13 - Postman Create Allotment Twist 1](screenshots/13-postman-create-allotment-twist1.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/allotments`
 - **Payload:** `{"resident_id": 1, "room_id": 2}`
 - **Status Code:** `201 Created`
-- **Description:** **Client Brief Test 1** — Verifies that newly created allotments automatically initialize with status `pending`.
+- **Description:** **Client Brief Test 1** — New allotment record automatically starts with `status: "pending"`.
 
 ---
 
-#### 4. Relational SQL JOIN Allotments (`GET /allotments`)
-![04 - Postman Get Allotments JOIN](screenshots/04-get-allotments.png)
-- **Endpoint:** `GET /allotments`
-- **Status Code:** `200 OK`
-- **Description:** Verifies 3-table SQL JOIN querying resident name, roll number, room name, and block along with allotment status.
-
----
-
-#### 5. Twist Test 2: Status Forward `pending` → `approved` (`PATCH /allotments/:id/status`)
-![05 - Postman Approve Allotment](screenshots/05-approve-allotment.png)
-- **Endpoint:** `PATCH /allotments/1/status`
+#### 14. Twist Test 2: Status Forward `pending` → `approved` (`PATCH /allotments/:id/status`)
+![14 - Postman Approve Allotment Twist 2](screenshots/14-postman-approve-allotment-twist2.png)
+- **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
 - **Payload:** `{"status": "approved"}`
 - **Status Code:** `200 OK`
-- **Description:** **Client Brief Test 2** — Verifies advancing status by one step forward from `pending` to `approved`.
+- **Description:** **Client Brief Test 2** — State machine allows single step forward transition from `pending` to `approved`.
 
 ---
 
-#### 6. Duplicate Room Conflict Handling (`POST /rooms`)
-![06 - Postman Room Conflict](screenshots/06-create-room.png)
-- **Endpoint:** `POST /rooms`
-- **Status Code:** `409 Conflict` / `201 Created`
-- **Description:** Validates uniqueness enforcement for room name and block combinations.
-
----
-
-#### 7. Twist Test 3: Disallowed Reversal `approved` → `pending` (`PATCH /allotments/:id/status`)
-![07 - Postman Invalid Status Change](screenshots/07-invalid-status-transition.png)
-- **Endpoint:** `PATCH /allotments/1/status`
+#### 15. Twist Test 3: Disallowed Reversal `approved` → `pending` (`PATCH /allotments/:id/status`)
+![15 - Postman Invalid Status Twist 3](screenshots/15-postman-invalid-status-twist3.png)
+- **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
 - **Payload:** `{"status": "pending"}`
 - **Status Code:** `400 Bad Request`
-- **Description:** **Client Brief Test 3** — State machine rejects backward transitions with exact error `"Invalid status change"`.
+- **Description:** **Client Brief Test 3** — State machine strictly rejects backward transition with the required exact error message: `{"error": "Invalid status change"}`.
 
 ---
 
-#### 8. Get Allotment by ID (`GET /allotments/:id`)
-![08 - Postman Get Allotment by ID](screenshots/08-get-allotment-by-id.png)
-- **Endpoint:** `GET /allotments/1`
-- **Status Code:** `200 OK`
-- **Description:** Verifies single relational allotment record retrieval.
-
----
-
-#### 9. Allotment Not Found (`GET /allotments/999`)
-![09 - Postman Allotment Not Found](screenshots/09-allotment-not-found.png)
-- **Endpoint:** `GET /allotments/999`
-- **Status Code:** `404 Not Found`
-- **Description:** Validates proper 404 response when querying non-existent allotment records.
-
----
-
-#### 10. Allotment Validation Error (`POST /allotments`)
-![10 - Postman Validation Error](screenshots/10-allotment-validation-error.png)
-- **Endpoint:** `POST /allotments`
-- **Payload:** Missing required foreign keys
+#### 16. Input Validation Error Handling (`POST /rooms`)
+![16 - Postman Validation Error](screenshots/16-postman-validation-error.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
+- **Payload:** `{"name": "Room Only"}` (missing required `block`)
 - **Status Code:** `400 Bad Request`
-- **Description:** Validates payload rejection with descriptive error feedback when mandatory fields are omitted.
+- **Description:** Rejects invalid payloads before hitting the database, returning clear field-level feedback.
 
 ---
 
