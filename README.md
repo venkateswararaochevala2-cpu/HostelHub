@@ -9,6 +9,18 @@ Built with **Node.js**, **Express**, and **SQLite**.
 
 ---
 
+## 🌐 Live Deployment
+
+The API is fully deployed and accessible live on Render:
+- **Live Base URL:** [`https://hostelhub-cjlu.onrender.com/`](https://hostelhub-cjlu.onrender.com/)
+- **Live Health Check:** [`https://hostelhub-cjlu.onrender.com/health`](https://hostelhub-cjlu.onrender.com/health)
+- **Live Rooms API:** [`https://hostelhub-cjlu.onrender.com/rooms`](https://hostelhub-cjlu.onrender.com/rooms)
+- **Live Search Rooms by Block:** [`https://hostelhub-cjlu.onrender.com/rooms?block=Block%20A`](https://hostelhub-cjlu.onrender.com/rooms?block=Block%20A)
+- **Live Residents API:** [`https://hostelhub-cjlu.onrender.com/residents`](https://hostelhub-cjlu.onrender.com/residents)
+- **Live Allotments & SQL JOIN:** [`https://hostelhub-cjlu.onrender.com/allotments`](https://hostelhub-cjlu.onrender.com/allotments)
+
+---
+
 ## 📁 Project Structure
 
 ```text
@@ -251,9 +263,146 @@ JOIN rooms ON allotments.room_id = rooms.id;
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots & Live API Execution Proofs
 
-The [`screenshots/`](screenshots/) directory is reserved for endpoint execution screenshots and Postman runs.
+All actions and endpoints have been executed against the live Render deployment (`https://hostelhub-cjlu.onrender.com/`). The execution proofs below are organized into **Browser Path Navigation** and **Postman Mutation & Twist Rule Actions**:
+
+---
+
+### Part A: Live Browser Path Navigation (`https://hostelhub-cjlu.onrender.com`)
+
+#### 1. Root Welcome & API Directory (`GET /`)
+![01 - Browser Root Welcome](screenshots/01-browser-root.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/`](https://hostelhub-cjlu.onrender.com/)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Root API discovery returning server status, project theme metadata, and links to all available endpoints.
+
+---
+
+#### 2. Health Check (`GET /health`)
+![02 - Browser Health Check](screenshots/02-browser-health.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/health`](https://hostelhub-cjlu.onrender.com/health)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Uptime monitoring endpoint returning `{ "status": "OK", "message": "HostelHub server is running and healthy" }`.
+
+---
+
+#### 3. All Rooms List (`GET /rooms`)
+![03 - Browser All Rooms](screenshots/03-browser-rooms.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/rooms`](https://hostelhub-cjlu.onrender.com/rooms)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Fetches all rooms across all hostel blocks ordered by ID.
+
+---
+
+#### 4. Search Rooms by Query Parameter (`GET /rooms?block=Block A`)
+![04 - Browser Rooms Search by Block](screenshots/04-browser-rooms-search.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/rooms?block=Block%20A`](https://hostelhub-cjlu.onrender.com/rooms?block=Block%20A)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Client Brief search requirement — filters rooms case-insensitively using SQLite `LIKE` parameterization.
+
+---
+
+#### 5. Get Single Room by ID (`GET /rooms/1`)
+![05 - Browser Single Room by ID](screenshots/05-browser-room-by-id.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/rooms/1`](https://hostelhub-cjlu.onrender.com/rooms/1)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Retrieves details of a specific room record (`Room 101` in `Block A`).
+
+---
+
+#### 6. All Residents List (`GET /residents`)
+![06 - Browser All Residents](screenshots/06-browser-residents.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/residents`](https://hostelhub-cjlu.onrender.com/residents)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Returns all registered student residents with roll number and department details.
+
+---
+
+#### 7. Get Single Resident by ID (`GET /residents/1`)
+![07 - Browser Single Resident by ID](screenshots/07-browser-resident-by-id.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/residents/1`](https://hostelhub-cjlu.onrender.com/residents/1)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Fetches resident profile by primary key (`Rahul Sharma`, `21CS001`).
+
+---
+
+#### 8. SQL JOIN: Allotments with Resident & Room Details (`GET /allotments`)
+![08 - Browser Allotments SQL JOIN](screenshots/08-browser-allotments-join.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/allotments`](https://hostelhub-cjlu.onrender.com/allotments)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Core Client Brief requirement — executes a 3-table SQL JOIN projecting `resident_name`, `roll_number`, `room_name`, `room_block`, and `status`.
+
+---
+
+#### 9. Single Allotment Details (`GET /allotments/1`)
+![09 - Browser Single Allotment Details](screenshots/09-browser-allotment-by-id.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/allotments/1`](https://hostelhub-cjlu.onrender.com/allotments/1)
+- **Method:** `GET` | **Status Code:** `200 OK`
+- **Description:** Returns full relational details for a single room allocation by ID.
+
+---
+
+#### 10. Non-Existent Room Error Handling (`GET /rooms/999`)
+![10 - Browser Room Not Found 404](screenshots/10-browser-rooms-404.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/rooms/999`](https://hostelhub-cjlu.onrender.com/rooms/999)
+- **Method:** `GET` | **Status Code:** `404 Not Found`
+- **Description:** Gracefully handles non-existent IDs with `{ "error": "Room with ID 999 not found" }`.
+
+---
+
+#### 11. Catch-All Route 404 (`GET /unknown-route`)
+![11 - Browser Route Not Found 404](screenshots/11-browser-route-404.png)
+- **Live Path:** [`https://hostelhub-cjlu.onrender.com/unknown-route`](https://hostelhub-cjlu.onrender.com/unknown-route)
+- **Method:** `GET` | **Status Code:** `404 Not Found`
+- **Description:** Express global catch-all returning JSON error response for unmapped paths.
+
+---
+
+### Part B: Postman Mutation & Twist Rule Actions
+
+#### 12. Create New Room (`POST /rooms`)
+![12 - Postman Create Room](screenshots/12-postman-create-room.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
+- **Payload:** `{"name": "Room 501", "block": "Block E"}`
+- **Status Code:** `201 Created`
+- **Description:** Successfully inserts a new room with validation and returns the created record.
+
+---
+
+#### 13. Twist Test 1: Add Allotment Starting as Pending (`POST /allotments`)
+![13 - Postman Create Allotment Twist 1](screenshots/13-postman-create-allotment-twist1.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/allotments`
+- **Payload:** `{"resident_id": 1, "room_id": 2}`
+- **Status Code:** `201 Created`
+- **Description:** **Client Brief Test 1** — New allotment record automatically starts with `status: "pending"`.
+
+---
+
+#### 14. Twist Test 2: Status Forward `pending` → `approved` (`PATCH /allotments/:id/status`)
+![14 - Postman Approve Allotment Twist 2](screenshots/14-postman-approve-allotment-twist2.png)
+- **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
+- **Payload:** `{"status": "approved"}`
+- **Status Code:** `200 OK`
+- **Description:** **Client Brief Test 2** — State machine allows single step forward transition from `pending` to `approved`.
+
+---
+
+#### 15. Twist Test 3: Disallowed Reversal `approved` → `pending` (`PATCH /allotments/:id/status`)
+![15 - Postman Invalid Status Twist 3](screenshots/15-postman-invalid-status-twist3.png)
+- **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
+- **Payload:** `{"status": "pending"}`
+- **Status Code:** `400 Bad Request`
+- **Description:** **Client Brief Test 3** — State machine strictly rejects backward transition with the required exact error message: `{"error": "Invalid status change"}`.
+
+---
+
+#### 16. Input Validation Error Handling (`POST /rooms`)
+![16 - Postman Validation Error](screenshots/16-postman-validation-error.png)
+- **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
+- **Payload:** `{"name": "Room Only"}` (missing required `block`)
+- **Status Code:** `400 Bad Request`
+- **Description:** Rejects invalid payloads before hitting the database, returning clear field-level feedback.
 
 ---
 
@@ -271,4 +420,7 @@ The [`screenshots/`](screenshots/) directory is reserved for endpoint execution 
 - [x] Test 3 passed (`approved` → `pending`, 400 `"Invalid status change"`)
 - [x] Complete Postman collection JSON exported at root
 - [x] Clean single test suite (`npm test`) with 100% pass rate
+- [x] Live deployment active on Render (`https://hostelhub-cjlu.onrender.com/`)
+- [x] All live browser & Postman action execution screenshots embedded in README
+
 
