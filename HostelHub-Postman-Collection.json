@@ -1,0 +1,502 @@
+{
+  "info": {
+    "_postman_id": "hostelhub-collection-g10",
+    "name": "HostelHub - Room Allotment Management API",
+    "description": "Postman Collection for HostelHub BDF Group Assignment ST-CSEQE2A-G10 (Theme 10 of 30 · Room allotment). Tests Express REST API, SQLite database with foreign keys, JOIN endpoints, input validation, room block search, and the status flow twist rule.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Health & Root",
+      "item": [
+        {
+          "name": "GET Root Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 - Rooms CRUD & Search",
+      "item": [
+        {
+          "name": "GET All Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Rooms by Block (Query Param)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms?block=Block A",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms"],
+              "query": [
+                {
+                  "key": "block",
+                  "value": "Block A"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Room By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create Room (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Room 401\",\n  \"block\": \"Block D\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/rooms",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Update Room (200)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Room 101-Renovated\",\n  \"block\": \"Block A\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/rooms/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Room By ID (200)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms/5",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms", "5"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03 - Residents CRUD",
+      "item": [
+        {
+          "name": "GET All Residents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/residents",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["residents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Resident By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/residents/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["residents", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create Resident (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vikram Malhotra\",\n  \"roll_number\": \"21CS099\",\n  \"department\": \"Computer Science\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/residents",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["residents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Update Resident (200)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul K. Sharma\",\n  \"roll_number\": \"21CS001\",\n  \"department\": \"Computer Science & Eng\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/residents/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["residents", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Resident By ID (200)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/residents/4",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["residents", "4"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "04 - Allotments & SQL JOIN",
+      "item": [
+        {
+          "name": "GET All Allotments (SQL JOIN)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/allotments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Allotments Details (JOIN Endpoint)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/allotments/details",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "details"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Allotment Detail By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/allotments/details/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "details", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Allotment By ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/allotments/3",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "3"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "05 - Twist Tests (Status Flow)",
+      "item": [
+        {
+          "name": "Test 1: Add Allotment -> Starts as pending (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resident_id\": 2,\n  \"room_id\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/allotments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2: pending -> approved (200)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/allotments/1/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "1", "status"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 3: approved -> pending (400 'Invalid status change')",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"pending\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/allotments/2/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "2", "status"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Twist Next Step: approved -> done (200)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"done\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/allotments/2/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["allotments", "2", "status"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "06 - Validation & Errors",
+      "item": [
+        {
+          "name": "Invalid Room ID (400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms/invalid-id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms", "invalid-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Non-existent Room (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rooms/9999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms", "9999"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Room Validation Error (Missing Block) (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Room 501\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/rooms",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["rooms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unknown Route (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/unknown/route",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["unknown", "route"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

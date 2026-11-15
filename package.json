@@ -1,0 +1,27 @@
+{
+  "name": "hostelhub",
+  "version": "1.0.0",
+  "description": "HostelHub - Room Allotment Management System REST API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "express",
+    "sqlite",
+    "rest-api",
+    "hostelhub"
+  ],
+  "author": "HostelHub Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
