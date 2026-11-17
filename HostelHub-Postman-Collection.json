@@ -1,9 +1,11 @@
 {
   "info": {
-    "_postman_id": "hostelhub-collection-g10",
+    "_postman_id": "95a65d44-9d20-4990-ae05-f6f1f095d817",
     "name": "HostelHub - Room Allotment Management API",
     "description": "Postman Collection for HostelHub BDF Group Assignment ST-CSEQE2A-G10 (Theme 10 of 30 · Room allotment). Tests Express REST API, SQLite database with foreign keys, JOIN endpoints, input validation, room block search, and the status flow twist rule.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59382612",
+    "_collection_link": "https://go.postman.co/collection/59382612-95a65d44-9d20-4990-ae05-f6f1f095d817?source=collection_link"
   },
   "item": [
     {
@@ -17,9 +19,13 @@
             "url": {
               "raw": "http://localhost:3000/",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": [""]
+              "path": [
+                ""
+              ]
             }
           },
           "response": []
@@ -32,9 +38,13 @@
             "url": {
               "raw": "http://localhost:3000/health",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["health"]
+              "path": [
+                "health"
+              ]
             }
           },
           "response": []
@@ -52,9 +62,13 @@
             "url": {
               "raw": "http://localhost:3000/rooms",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms"]
+              "path": [
+                "rooms"
+              ]
             }
           },
           "response": []
@@ -67,9 +81,13 @@
             "url": {
               "raw": "http://localhost:3000/rooms?block=Block A",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms"],
+              "path": [
+                "rooms"
+              ],
               "query": [
                 {
                   "key": "block",
@@ -88,9 +106,14 @@
             "url": {
               "raw": "http://localhost:3000/rooms/1",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms", "1"]
+              "path": [
+                "rooms",
+                "1"
+              ]
             }
           },
           "response": []
@@ -112,9 +135,13 @@
             "url": {
               "raw": "http://localhost:3000/rooms",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms"]
+              "path": [
+                "rooms"
+              ]
             }
           },
           "response": []
@@ -136,9 +163,14 @@
             "url": {
               "raw": "http://localhost:3000/rooms/1",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms", "1"]
+              "path": [
+                "rooms",
+                "1"
+              ]
             }
           },
           "response": []
@@ -151,9 +183,14 @@
             "url": {
               "raw": "http://localhost:3000/rooms/5",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms", "5"]
+              "path": [
+                "rooms",
+                "5"
+              ]
             }
           },
           "response": []
@@ -171,9 +208,13 @@
             "url": {
               "raw": "http://localhost:3000/residents",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["residents"]
+              "path": [
+                "residents"
+              ]
             }
           },
           "response": []
@@ -186,9 +227,14 @@
             "url": {
               "raw": "http://localhost:3000/residents/1",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["residents", "1"]
+              "path": [
+                "residents",
+                "1"
+              ]
             }
           },
           "response": []
@@ -210,9 +256,13 @@
             "url": {
               "raw": "http://localhost:3000/residents",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["residents"]
+              "path": [
+                "residents"
+              ]
             }
           },
           "response": []
@@ -234,9 +284,14 @@
             "url": {
               "raw": "http://localhost:3000/residents/1",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["residents", "1"]
+              "path": [
+                "residents",
+                "1"
+              ]
             }
           },
           "response": []
@@ -249,9 +304,14 @@
             "url": {
               "raw": "http://localhost:3000/residents/4",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["residents", "4"]
+              "path": [
+                "residents",
+                "4"
+              ]
             }
           },
           "response": []
@@ -269,9 +329,13 @@
             "url": {
               "raw": "http://localhost:3000/allotments",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments"]
+              "path": [
+                "allotments"
+              ]
             }
           },
           "response": []
@@ -284,9 +348,14 @@
             "url": {
               "raw": "http://localhost:3000/allotments/details",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "details"]
+              "path": [
+                "allotments",
+                "details"
+              ]
             }
           },
           "response": []
@@ -299,9 +368,15 @@
             "url": {
               "raw": "http://localhost:3000/allotments/details/1",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "details", "1"]
+              "path": [
+                "allotments",
+                "details",
+                "1"
+              ]
             }
           },
           "response": []
@@ -314,9 +389,14 @@
             "url": {
               "raw": "http://localhost:3000/allotments/3",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "3"]
+              "path": [
+                "allotments",
+                "3"
+              ]
             }
           },
           "response": []
@@ -343,9 +423,13 @@
             "url": {
               "raw": "http://localhost:3000/allotments",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments"]
+              "path": [
+                "allotments"
+              ]
             }
           },
           "response": []
@@ -367,9 +451,15 @@
             "url": {
               "raw": "http://localhost:3000/allotments/1/status",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "1", "status"]
+              "path": [
+                "allotments",
+                "1",
+                "status"
+              ]
             }
           },
           "response": []
@@ -391,9 +481,15 @@
             "url": {
               "raw": "http://localhost:3000/allotments/2/status",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "2", "status"]
+              "path": [
+                "allotments",
+                "2",
+                "status"
+              ]
             }
           },
           "response": []
@@ -415,9 +511,15 @@
             "url": {
               "raw": "http://localhost:3000/allotments/2/status",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["allotments", "2", "status"]
+              "path": [
+                "allotments",
+                "2",
+                "status"
+              ]
             }
           },
           "response": []
@@ -435,9 +537,14 @@
             "url": {
               "raw": "http://localhost:3000/rooms/invalid-id",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms", "invalid-id"]
+              "path": [
+                "rooms",
+                "invalid-id"
+              ]
             }
           },
           "response": []
@@ -450,9 +557,14 @@
             "url": {
               "raw": "http://localhost:3000/rooms/9999",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms", "9999"]
+              "path": [
+                "rooms",
+                "9999"
+              ]
             }
           },
           "response": []
@@ -474,9 +586,13 @@
             "url": {
               "raw": "http://localhost:3000/rooms",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["rooms"]
+              "path": [
+                "rooms"
+              ]
             }
           },
           "response": []
@@ -489,9 +605,14 @@
             "url": {
               "raw": "http://localhost:3000/unknown/route",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["unknown", "route"]
+              "path": [
+                "unknown",
+                "route"
+              ]
             }
           },
           "response": []

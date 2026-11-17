@@ -36,8 +36,9 @@ HostelHub/
 ├── package.json                        # Project metadata, dependencies, and npm scripts
 ├── package-lock.json                   # Dependency lockfile
 ├── .gitignore                          # Ignores node_modules, *.db, *.sqlite, .env, .DS_Store
+├── screenshots/                        # Live browser navigation screenshots directory
+├── postman-screenshots/                # Dedicated directory for Postman API test screenshots
 ├── HostelHub-Postman-Collection.json   # Exported Postman Collection (v2.1.0)
-├── screenshots/                        # Screenshots directory
 └── README.md                           # Complete project guide and API documentation
 ```
 
@@ -249,27 +250,9 @@ JOIN rooms ON allotments.room_id = rooms.id;
 
 ---
 
-## 📮 Postman Collection Setup
+## 📸 Live Browser Path Navigation Proofs (`https://hostelhub-cjlu.onrender.com`)
 
-1. Open Postman.
-2. Click **Import** and select `HostelHub-Postman-Collection.json` directly from the project root.
-3. The collection is organized into 6 clean folders:
-   - `01 - Health & Root`
-   - `02 - Rooms CRUD & Search`
-   - `03 - Residents CRUD`
-   - `04 - Allotments & SQL JOIN`
-   - `05 - Twist Tests (Status Flow)` (Contains Tests 1, 2, and 3)
-   - `06 - Validation & Errors`
-
----
-
-## 📸 Screenshots & Live API Execution Proofs
-
-All actions and endpoints have been executed against the live Render deployment (`https://hostelhub-cjlu.onrender.com/`). The execution proofs below are organized into **Browser Path Navigation** and **Postman Mutation & Twist Rule Actions**:
-
----
-
-### Part A: Live Browser Path Navigation (`https://hostelhub-cjlu.onrender.com`)
+The browser navigation execution proofs below demonstrate all GET routes and error handling endpoints running against the live Render deployment:
 
 #### 1. Root Welcome & API Directory (`GET /`)
 ![01 - Browser Root Welcome](screenshots/01-browser-root.png)
@@ -359,10 +342,12 @@ All actions and endpoints have been executed against the live Render deployment 
 
 ---
 
-### Part B: Postman Mutations & Twist Rule State Machine
+## 📮 Postman Test Execution Proofs & Collection
+
+### 1. Postman Mutations & Twist Rule State Machine Proofs
 
 #### 12. Create New Room (`POST /rooms`)
-![12 - Postman Create Room](screenshots/12-postman-create-room.png)
+![12 - Postman Create Room](postman-screenshots/12-postman-create-room.png)
 - **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
 - **Payload:** `{"name": "Room 501", "block": "Block E"}`
 - **Status Code:** `201 Created`
@@ -371,7 +356,7 @@ All actions and endpoints have been executed against the live Render deployment 
 ---
 
 #### 13. Twist Test 1: Add Allotment Starting as Pending (`POST /allotments`)
-![13 - Postman Create Allotment Twist 1](screenshots/13-postman-create-allotment-twist1.png)
+![13 - Postman Create Allotment Twist 1](postman-screenshots/13-postman-create-allotment-twist1.png)
 - **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/allotments`
 - **Payload:** `{"resident_id": 1, "room_id": 2}`
 - **Status Code:** `201 Created`
@@ -380,7 +365,7 @@ All actions and endpoints have been executed against the live Render deployment 
 ---
 
 #### 14. Twist Test 2: Status Forward `pending` → `approved` (`PATCH /allotments/:id/status`)
-![14 - Postman Approve Allotment Twist 2](screenshots/14-postman-approve-allotment-twist2.png)
+![14 - Postman Approve Allotment Twist 2](postman-screenshots/14-postman-approve-allotment-twist2.png)
 - **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
 - **Payload:** `{"status": "approved"}`
 - **Status Code:** `200 OK`
@@ -389,7 +374,7 @@ All actions and endpoints have been executed against the live Render deployment 
 ---
 
 #### 15. Twist Test 3: Disallowed Reversal `approved` → `pending` (`PATCH /allotments/:id/status`)
-![15 - Postman Invalid Status Twist 3](screenshots/15-postman-invalid-status-twist3.png)
+![15 - Postman Invalid Status Twist 3](postman-screenshots/15-postman-invalid-status-twist3.png)
 - **Endpoint:** `PATCH https://hostelhub-cjlu.onrender.com/allotments/4/status`
 - **Payload:** `{"status": "pending"}`
 - **Status Code:** `400 Bad Request`
@@ -398,11 +383,29 @@ All actions and endpoints have been executed against the live Render deployment 
 ---
 
 #### 16. Input Validation Error Handling (`POST /rooms`)
-![16 - Postman Validation Error](screenshots/16-postman-validation-error.png)
+![16 - Postman Validation Error](postman-screenshots/16-postman-validation-error.png)
 - **Endpoint:** `POST https://hostelhub-cjlu.onrender.com/rooms`
 - **Payload:** `{"name": "Room Only"}` (missing required `block`)
 - **Status Code:** `400 Bad Request`
 - **Description:** Rejects invalid payloads before hitting the database, returning clear field-level feedback.
+
+---
+
+### 2. Postman Collection & Setup Guide
+
+Right after executing and capturing the API test proofs above, the full Postman collection is exported and available directly in the project:
+- **Collection File:** [`HostelHub-Postman-Collection.json`](HostelHub-Postman-Collection.json) (also mirrored in [`postman-screenshots/HostelHub-Postman-Collection.json`](postman-screenshots/HostelHub-Postman-Collection.json))
+
+#### How to Import & Use:
+1. Open the Postman desktop app.
+2. Click **Import** (top left) and select **`HostelHub-Postman-Collection.json`**.
+3. The collection is organized into 6 clean folders matching the assessment rubric:
+   - `01 - Health & Root`
+   - `02 - Rooms CRUD & Search`
+   - `03 - Residents CRUD`
+   - `04 - Allotments & SQL JOIN`
+   - `05 - Twist Tests (Status Flow)` (Contains Tests 1, 2, and 3)
+   - `06 - Validation & Errors`
 
 ---
 
